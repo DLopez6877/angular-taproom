@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+// import { DomSanitizer } from '@angular/platform-browser';
 import { Beer } from './beer.model';
 import { BeerComponent } from './beer-inventory.component'
 
@@ -36,6 +37,14 @@ import { BeerComponent } from './beer-inventory.component'
   masterBeerList: Beer[] = [
     new Beer('Berlinerweisse', "pFriem", 3, 3.5),
     new Beer('White Dog IPA','El Segundo', 5, 6.9),
+    new Beer('Kook - IIPA','Pizza Port', 5, 7.3),
+    new Beer('Accumulated Knowledge','Modern Times', 6, 6.2),
+    new Beer('Blanche de Chambly','Unibroue', 5, 5),
+    new Beer('White Dog IPA','El Segundo', 5, 6.9),
+    new Beer('White Dog IPA','El Segundo', 5, 6.9),
+    new Beer('White Dog IPA','El Segundo', 5, 6.9),
+    new Beer('White Dog IPA','El Segundo', 5, 6.9),
+    new Beer('White Dog IPA','El Segundo', 5, 6.9),
     new Beer('Handtruck - Pale','Barley Brown\'s', 7, 5.5)
  ];
 
@@ -55,18 +64,18 @@ import { BeerComponent } from './beer-inventory.component'
 
    decreasePints() {
     this.selectedBeer.pints -= 1;
-    if (this.selectedBeer.pints <= 10) {
+    if (this.selectedBeer.pints <= 20) {
       this.selectedBeer.priceColor = "bg-danger";
-    } else if (this.selectedBeer.pints <= 13){
+    } else if (this.selectedBeer.pints <= 30){
       this.selectedBeer.priceColor = "bg-warning";
     }
   }
 
    increasePints() {
      this.selectedBeer.pints += 1;
-     if (this.selectedBeer.pints >= 14) {
+     if (this.selectedBeer.pints >= 31) {
        this.selectedBeer.priceColor = "bg-success";
-     } else if (this.selectedBeer.pints >= 11){
+     } else if (this.selectedBeer.pints >= 21){
        this.selectedBeer.priceColor = "bg-warning";
      }
    }

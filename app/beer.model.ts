@@ -1,7 +1,8 @@
 export class Beer {
   public done: boolean = false;
-  public pints: number = 15;
+  public pints: number = 35;
   public priceColor: string = "bg-success";
+  public abvColor: string = "text-muted";
   constructor(
     public name: string,
     public brand: string,

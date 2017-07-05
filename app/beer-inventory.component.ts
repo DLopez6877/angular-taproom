@@ -6,13 +6,25 @@ import { Beer } from './beer.model';
 @Component({
   selector: 'beer-list',
   template: `
-  <ul>
-     <li class={{currentBeer.priceColor}} (click)="isDone(currentBeer)" *ngFor="let currentBeer of childBeerList">
-
-     {{currentBeer.name}} -  {{currentBeer.brand}} - \${{currentBeer.price}} - {{currentBeer.abv}}% - {{currentBeer.pints}}
-
-     <button (click)="editButtonHasBeenClicked(currentBeer)">Edit!</button></li>
- </ul>
+     <div class={{currentBeer.priceColor}} (click)="isDone(currentBeer)" *ngFor="let currentBeer of childBeerList">
+     <table class="table table-bordered">
+      <thead>
+      <th>Name</th>
+      <th>Brand</th>
+      <th>Price</th>
+      <th>ABV</th>
+      <th>Pints available</th>
+      </thead>
+      <tbody>
+        <td>{{currentBeer.name}}</td>
+        <td>{{currentBeer.brand}}</td>
+        <td>\${{currentBeer.price}}</td>
+        <td class={{currentBeer.abvColor}}>{{currentBeer.abv}}%</td>
+        <!--<td>{{currentBeer.abv}}%</td>-->
+        <td>{{currentBeer.pints}}</td>
+        <td><button (click)="editButtonHasBeenClicked(currentBeer)">Edit!</button></td>
+      </tbody>
+     </table>
   `
 })
 
@@ -30,7 +42,6 @@ export class BeerComponent {
   editButtonHasBeenClicked(beerToEdit: Beer) {
     this.clickSender.emit(beerToEdit);
   }
-  addBeer() {
-    // this.clickMessage = 'It is ok Daniel, you will get it';
-  }
+
+
 }
