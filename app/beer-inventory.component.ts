@@ -19,7 +19,8 @@ import { Beer } from './beer.model';
         <td>{{currentBeer.name}}</td>
         <td>{{currentBeer.brand}}</td>
         <td>\${{currentBeer.price}}</td>
-        <td class={{currentBeer.abvColor}}>{{currentBeer.abv}}%</td>
+        <td><span [style.background-color]="abvColor(currentBeer)">{{currentBeer.abv}}% ABV</span></td>
+        <td>{{currentBeer.abv}}%</td>
         <!--<td>{{currentBeer.abv}}%</td>-->
         <td>{{currentBeer.pints}}</td>
         <td><button (click)="editButtonHasBeenClicked(currentBeer)">Edit!</button></td>
@@ -43,5 +44,11 @@ export class BeerComponent {
     this.clickSender.emit(beerToEdit);
   }
 
-
+  abvColor(beer: Beer) {
+    if (beer.abv <= 5) {
+    return 'yellow';
+    } else {
+    return 'red';
+    }
+  }
 }

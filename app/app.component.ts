@@ -79,4 +79,4 @@ import { BeerComponent } from './beer-inventory.component'
        this.selectedBeer.priceColor = "bg-warning";
      }
    }
-}
+  }
