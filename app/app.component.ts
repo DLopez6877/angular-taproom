@@ -16,11 +16,12 @@ import { BeerComponent } from './beer-inventory.component'
 
        <!--Edit beer-->
        <edit-beer [childSelectedBeer]="selectedBeer"
-       (decreaseButtonClickedSender)="decreasePints()"
-       (increaseButtonClickedSender)="increasePints()"
+       (decreaseButtonClickedSender)="decreasePints($event)"
+       (increaseButtonClickedSender)="increasePints($event)"
+       (popularClickedSender)="togglePopular($event)"
+       (staffPickClickedSender)="toggleStaffPick($event)"
        (doneButtonClickedSender)="finishedEditing()"></edit-beer>
      </div>
-
      <!--New beer-->
      <new-beer (newBeerSender)="addBeer($event)"></new-beer>
      `
@@ -77,6 +78,26 @@ import { BeerComponent } from './beer-inventory.component'
        this.selectedBeer.priceColor = "bg-success";
      } else if (this.selectedBeer.pints >= 21){
        this.selectedBeer.priceColor = "bg-warning";
+     }
+   }
+
+   togglePopular(clickedBeer: Beer) {
+     if(clickedBeer.popular === false) {
+       clickedBeer.popular = true;
+       console.log('true popular');
+     } else {
+       clickedBeer.popular = false;
+       console.log('false popular');
+     }
+   }
+
+   toggleStaffPick(clickedBeer: Beer) {
+     if(clickedBeer.staffPick === false) {
+       clickedBeer.staffPick = true;
+       console.log('true staffPick');
+     } else {
+       clickedBeer.staffPick = false;
+       console.log('false staffPick');
      }
    }
   }

@@ -24,11 +24,12 @@ import { Beer } from './beer.model';
     </div>
   `
 })
+// <input type="checkbox" [(ngModel)]="popular" [value]="true" #newPopular name="popular">Yes (optional)<br>
 
 export class NewBeerComponent {
   @Output() newBeerSender = new EventEmitter();
 
-  submitForm(name: string, brand: string, price: number, abv: number) {
+  submitForm(name: string, brand: string, price: number, abv: number, staffPick: boolean) {
     var newBeerToAdd: Beer = new Beer(name, brand, price, abv);
     this.newBeerSender.emit(newBeerToAdd);
     console.log(newBeerToAdd);

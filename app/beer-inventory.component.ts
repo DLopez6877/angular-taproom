@@ -6,7 +6,14 @@ import { Beer } from './beer.model';
 @Component({
   selector: 'beer-list',
   template: `
-     <div class={{currentBeer.priceColor}} (click)="isDone(currentBeer)" *ngFor="let currentBeer of childBeerList">
+
+      <select (change)="onChange($event.target.value)">
+        <option value="showMostPopular">Show Most Popular</option>
+        <option value="showStaffPicks">Show Staff Picks</option>
+        <option value="showAll" selected="selected">Show All</option>
+      </select>
+
+     <div class={{currentBeer.priceColor}} *ngFor="let currentBeer of childBeerList | filter:filterByChoice">
      <table class="table table-bordered">
       <thead>
       <th>Name</th>
@@ -18,26 +25,26 @@ import { Beer } from './beer.model';
       <tbody>
         <td>{{currentBeer.name}}</td>
         <td>{{currentBeer.brand}}</td>
-        <td>\${{currentBeer.price}}</td>
-        <td><span [style.background-color]="abvColor(currentBeer)">{{currentBeer.abv}}% ABV</span></td>
-        <td>{{currentBeer.abv}}%</td>
-        <!--<td>{{currentBeer.abv}}%</td>-->
+        <td><span [style.color]="priceColor(currentBeer)">\${{currentBeer.price}}</span></td>
+        <td><span [style.color]="abvColor(currentBeer)">{{currentBeer.abv}}% ABV</span></td>
         <td>{{currentBeer.pints}}</td>
         <td><button (click)="editButtonHasBeenClicked(currentBeer)">Edit!</button></td>
+        <p *ngIf="currentBeer.popular === true">Popular*</p>
+        <p *ngIf="currentBeer.staffPick === true">Staff Pick*</p>
       </tbody>
      </table>
   `
 })
 
-
 export class BeerComponent {
   @Input() childBeerList: Beer[];
   @Output() clickSender = new EventEmitter();
 
-  isDone(clickedBeer: Beer) {
-    if(clickedBeer.done === true) {
-      alert("This task is done!");
-    }
+  filterByChoice: string = "showAll";
+
+  onChange(optionFromMenu) {
+    this.filterByChoice = optionFromMenu;
+    console.log(this.filterByChoice);
   }
 
   editButtonHasBeenClicked(beerToEdit: Beer) {
@@ -45,10 +52,22 @@ export class BeerComponent {
   }
 
   abvColor(beer: Beer) {
-    if (beer.abv <= 5) {
-    return 'mistyrose';
+    if (beer.abv <= 4.5) {
+    return '#f49b8b';
+    } else if (beer.abv <= 7) {
+    return 'tomato';
     } else {
-    return 'thistle';
+    return '#963a2a';
+    }
+  }
+
+  priceColor(beer: Beer) {
+    if (beer.price <= 4.5) {
+    return 'lightblue';
+  } else if (beer.price <= 6) {
+    return '#0000ff';
+    } else {
+    return 'navy';
     }
   }
 }

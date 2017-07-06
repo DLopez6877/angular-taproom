@@ -31,6 +31,10 @@ import { Beer } from './beer.model';
           <button (click)="decreaseButtonClicked()">-1</button>
           <button (click)="increaseButtonClicked()">+1</button>
           <br>
+          <label>Customer Favorite?</label>
+          <input type="checkbox" (click)="popularClicked(childSelectedBeer)"/><br>
+          <label>Staff Favorite?</label>
+          <input type="checkbox" (click)="staffPickClicked(childSelectedBeer)"/><br>
           <br>
           <button (click)="doneButtonClicked()">Done</button>
         </div>
@@ -43,14 +47,26 @@ export class EditBeerComponent {
   @Output() doneButtonClickedSender = new EventEmitter();
   @Output() decreaseButtonClickedSender = new EventEmitter();
   @Output() increaseButtonClickedSender = new EventEmitter();
+  @Output() popularClickedSender = new EventEmitter();
+  @Output() staffPickClickedSender = new EventEmitter();
 
   doneButtonClicked() {
     this.doneButtonClickedSender.emit();
   }
+
   decreaseButtonClicked() {
     this.decreaseButtonClickedSender.emit();
   }
+
   increaseButtonClicked() {
     this.increaseButtonClickedSender.emit();
+  }
+
+  popularClicked() {
+    this.popularClickedSender.emit(this.childSelectedBeer);
+  }
+
+  staffPickClicked() {
+    this.staffPickClickedSender.emit(this.childSelectedBeer);
   }
 }
