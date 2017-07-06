@@ -6,10 +6,8 @@ import { Beer } from './beer.model';
   template: `
     <div>
         <div *ngIf="childSelectedBeer">
-          <h3>{{childSelectedBeer.description}}</h3>
-          <p>Beer Complete? {{childSelectedBeer.done}}</p>
-          <hr>
-          <h3>Edit Beer</h3>
+          <div id="edit-beer-wrapper">
+          <h1>Edit Beer</h1>
           <label>Enter Beer Name:</label>
           <br>
           <input [(ngModel)]="childSelectedBeer.name">
@@ -28,15 +26,16 @@ import { Beer } from './beer.model';
           <br>
           <label>Edit number of pints available:</label>
           <br>
-          <button (click)="decreaseButtonClicked()">-1</button>
-          <button (click)="increaseButtonClicked()">+1</button>
+          <button (click)="decreaseButtonClicked()" class="pints-available">-1</button>
+          <button (click)="increaseButtonClicked()" class="pints-available">+1</button>
           <br>
           <label>Customer Favorite?</label>
           <input type="checkbox" (click)="popularClicked(childSelectedBeer)"/><br>
           <label>Staff Favorite?</label>
           <input type="checkbox" (click)="staffPickClicked(childSelectedBeer)"/><br>
           <br>
-          <button (click)="doneButtonClicked()">Done</button>
+          <button (click)="doneButtonClicked()">Done 🍻</button>
+          </div>
         </div>
       </div>
   `

@@ -5,6 +5,7 @@ import { Beer } from './beer.model';
   selector: 'new-beer',
   template: `
     <h1>Add a New Beer</h1>
+    <div class="new-beer-wrapper">
     <div>
      <label>Enter Beer Name:</label>
      <input #newName>
@@ -21,6 +22,7 @@ import { Beer } from './beer.model';
       <input #newAbv>
     </div>
     <button (click)="submitForm(newName.value, newBrand.value, newPrice.value, newAbv.value);">Add beer 🍺</button>
+    </div>
     </div>
   `
 })

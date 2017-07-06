@@ -6,34 +6,37 @@ import { BeerComponent } from './beer-inventory.component'
  @Component({
    selector: 'app-root',
    template: `
+        <div class="login">
+          <input type="password" placeholder="Password" />
+          <button type="button" (click)="login()">Employee Login</button>
+        </div>
        <div class="container">
-        <h1>The Golden Fleece's Inventory {{month}}/{{day}}/{{year}}</h1>
-        <h3>{{currentFocus}}</h3>
-      <!--Beer list-->
-       <beer-list [childBeerList]="masterBeerList" (clickSender)="editBeer($event)"></beer-list>
+        <img src="/resources/img/Logo.png" class="logo">
 
-       <hr>
+        <div class="line-1"></div>
+        <div class="line-2"></div>
+        <div class="line-3"></div>
+        <div class="employeePermission-wrapper">
+        <!--New beer-->
+        <new-beer  *ngIf="this.employeePermission === true" (newBeerSender)="addBeer($event)"></new-beer>
+        <!--Edit beer-->
+        <edit-beer  *ngIf="this.employeePermission === true" [childSelectedBeer]="selectedBeer"
+        (decreaseButtonClickedSender)="decreasePints($event)"
+        (increaseButtonClickedSender)="increasePints($event)"
+        (popularClickedSender)="togglePopular($event)"
+        (staffPickClickedSender)="toggleStaffPick($event)"
+        (doneButtonClickedSender)="finishedEditing()"></edit-beer>
+        </div>
+        <!--Beer list-->
+        <beer-list [parentEmployeePermission]="employeePermission" [childBeerList]="masterBeerList" (clickSender)="editBeer($event)"></beer-list>
+        </div>
 
-       <!--Edit beer-->
-       <edit-beer [childSelectedBeer]="selectedBeer"
-       (decreaseButtonClickedSender)="decreasePints($event)"
-       (increaseButtonClickedSender)="increasePints($event)"
-       (popularClickedSender)="togglePopular($event)"
-       (staffPickClickedSender)="toggleStaffPick($event)"
-       (doneButtonClickedSender)="finishedEditing()"></edit-beer>
-     </div>
-     <!--New beer-->
-     <new-beer (newBeerSender)="addBeer($event)"></new-beer>
      `
  })
 
  export class AppComponent {
-   currentFocus: string = 'Our Keg Inventory';
-   currentTime = new Date();
-   month: number = this.currentTime.getMonth() + 1;
-   day: number = this.currentTime.getDate();
-   year: number = this.currentTime.getFullYear();
    selectedBeer = null;
+   employeePermission : boolean = false;
 
   masterBeerList: Beer[] = [
     new Beer('Berlinerweisse', "pFriem", 3, 3.5),
@@ -41,15 +44,24 @@ import { BeerComponent } from './beer-inventory.component'
     new Beer('Kook - IIPA','Pizza Port', 5, 7.3),
     new Beer('Accumulated Knowledge','Modern Times', 6, 6.2),
     new Beer('Blanche de Chambly','Unibroue', 5, 5),
-    new Beer('White Dog IPA','El Segundo', 5, 6.9),
-    new Beer('White Dog IPA','El Segundo', 5, 6.9),
-    new Beer('White Dog IPA','El Segundo', 5, 6.9),
-    new Beer('White Dog IPA','El Segundo', 5, 6.9),
-    new Beer('White Dog IPA','El Segundo', 5, 6.9),
+    new Beer('Luponic Distortion','Firestone Walker', 5, 5.9),
+    new Beer('Edelwiss','Schneider', 6, 6.2),
+    new Beer('Galaxy - White IPA w Brett', 'Anchorage', 4, 7),
+    new Beer('Two Flowers - Hemp & CBD IPA','Coalition', 6, 6),
+    new Beer('Urban Farmhouse','The Commons', 5, 5.3),
     new Beer('Handtruck - Pale','Barley Brown\'s', 7, 5.5)
  ];
 
    // clickMessage = '';
+   login() {
+     if (this.employeePermission === false ) {
+       this.employeePermission = true;
+       console.log(this);
+       console.log(this.employeePermission )
+     } else {
+       this.employeePermission = false;
+     }
+   }
 
    editBeer(clickedBeer) {
      this.selectedBeer = clickedBeer;

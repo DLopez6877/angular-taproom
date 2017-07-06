@@ -1,0 +1,156 @@
+// Colors
+$light: #f5e4c6;
+$dark: #333;
+
+// Global styles
+
+.container {
+  margin-bottom: 200px;
+}
+
+body {
+  background-color: $light;
+  color: $dark;
+  font-family: 'Lato', sans-serif;
+  font-size: 1.3em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Arvo', serif;
+}
+
+button {
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 0.9em;
+  background-color: $dark;
+  color: $light;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+}
+
+li {
+  font-size: 1.3em;
+  text-align: center;
+  padding-left: 0;
+  display: inline-block;
+  width: 17%;
+  margin-right: 30px;
+  &:first-of-type {
+    text-transform: uppercase;
+    font-family: 'Arvo';
+    font-weight: bold;
+    letter-spacing: 0.02em;
+  }
+}
+
+input {
+  font-size: 0.9em;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid $dark;
+  transition: all 0.3s ease-in-out;
+  &:focus {
+    border: 1px solid lighten($dark, 50%);
+    outline: none;
+  }
+}
+
+.line-1 {
+  background-color: $dark;
+  width: 100%;
+  height: 7px;
+  margin: 10px auto;
+}
+
+.line-2 {
+  background-color: $dark;
+  width: 90%;
+  height: 7px;
+  margin: 10px auto;
+}
+
+.line-3 {
+  background-color: $dark;
+  width: 80%;
+  margin-bottom: 10px;
+  height: 7px;
+  margin: 10px auto 30px auto;
+}
+
+.bg-success {
+  background-color: darken($light, 6%);
+}
+
+// Login area
+.login {
+  margin: 10px 0 0 10px;
+}
+
+// Logo/top of container area
+.logo {
+  display: block;
+  margin: 50px auto;
+  width: 500px;
+  @media (max-width: 550px) {
+    width: 300px;
+  }
+}
+
+.filter {
+  height: 30px;
+  margin-bottom: 30px;
+  outline: none;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+
+.price {
+  font-weight: bold;
+  font-family: 'Arvo';
+  font-size: 1.5em;
+}
+
+//NEW BEER
+new-beer {
+  clear: both;
+  input {
+    margin-bottom: 5px;
+    display: block;
+  }
+  button {
+    margin: 10px 0 20px 0;
+    padding: 10px;
+    font-size: 1.2em;
+  }
+}
+
+//EDIT BEER
+.employeePermission-wrapper {
+  display: flex;
+  justify-content: space-around;
+}
+
+edit-beer {
+  @extend new-beer;
+  h1 {
+    margin-top: 0;
+  }
+  .pints-available {
+    padding: 0 10px;
+    width: 60px;
+    height: 30px;
+  }
+}
+.edit-beer-button {
+  margin-right: 40px;
+}
+
+// Beer list
