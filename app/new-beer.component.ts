@@ -20,7 +20,7 @@ import { Beer } from './beer.model';
     <label>Beer ABV:</label>
       <input #newAbv>
     </div>
-    <button (click)="submitForm(newName.value, newPrice.value, newAbv.value);">Add beer 🍺</button>
+    <button (click)="submitForm(newName.value, newBrand.value, newPrice.value, newAbv.value);">Add beer 🍺</button>
     </div>
   `
 })

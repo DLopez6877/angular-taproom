@@ -46,9 +46,9 @@ export class BeerComponent {
 
   abvColor(beer: Beer) {
     if (beer.abv <= 5) {
-    return 'yellow';
+    return 'mistyrose';
     } else {
-    return 'red';
+    return 'thistle';
     }
   }
 }
